@@ -10,7 +10,6 @@
                         <h2>Contact Us</h2>
                         <div class="bt-option">
                             <a href="{{ route('index') }}">Home</a>
-                            <a href="#">Pages</a>
                             <span>Contact us</span>
                         </div>
                     </div>

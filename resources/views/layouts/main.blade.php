@@ -36,9 +36,6 @@
     <div class="canvas-close">
         <i class="fa fa-close"></i>
     </div>
-    <div class="canvas-search search-switch">
-        <i class="fa fa-search"></i>
-    </div>
     <nav class="canvas-menu mobile-menu">
         <ul>
             <li><a href="{{ route('index') }}">Home</a></li>
@@ -54,11 +51,7 @@
                 </ul>
             </li>
             <li><a href="{{ route('contact') }}">Contact</a></li>
-            @auth
-                <li><a href="{{ route('contact') }}">Dashboard</a></li>
-            @else
-                <li><a href="{{ route('login') }}">Login</a></li>
-            @endauth
+
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -101,11 +94,15 @@
                         @auth
                             <li><a href="#">{{ Auth::user()->name }}</a>
                                 <ul class="dropdown">
-                                    <li><a href="{{ route('contact') }}">Dashboard</a></li>
+                                    @if(auth()->user()->is_admin === 1)
+                                        <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                    @else
+                                        <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                                    @endif
                                     <hr>
                                     <li><a href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                 document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a></li>
 
@@ -122,9 +119,6 @@
             </div>
             <div class="col-lg-3">
                 <div class="top-option">
-                    <div class="to-search search-switch">
-                        <i class="fa fa-search"></i>
-                    </div>
                     <div class="to-social">
                         <a href="#"><i class="fa fa-facebook"></i></a>
                         <a href="#"><i class="fa fa-twitter"></i></a>

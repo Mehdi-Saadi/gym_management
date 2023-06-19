@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->integer('experience');
             $table->unsignedBigInteger('category_id');
-            $table->string('photo_name');
             $table->string('instagram')->nullable();
             $table->string('twitter')->nullable();
             $table->string('facebook')->nullable();
