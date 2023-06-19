@@ -65,7 +65,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="cs-item">
                         <span class="flaticon-002-dumbell"></span>
-                        <h4>Proffesponal training plan</h4>
+                        <h4>Proffesional training plan</h4>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                             dolore facilisis.</p>
                     </div>
@@ -98,7 +98,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="class-item">
                         <div class="ci-pic">
-                            <img src="img/classes/class-1.jpg" alt="">
+                            <img src="/img/classes/class-1.jpg" alt="">
                         </div>
                         <div class="ci-text">
                             <span>STRENGTH</span>
@@ -110,7 +110,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="class-item">
                         <div class="ci-pic">
-                            <img src="img/classes/class-2.jpg" alt="">
+                            <img src="/img/classes/class-2.jpg" alt="">
                         </div>
                         <div class="ci-text">
                             <span>Cardio</span>
@@ -122,7 +122,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="class-item">
                         <div class="ci-pic">
-                            <img src="img/classes/class-3.jpg" alt="">
+                            <img src="/img/classes/class-3.jpg" alt="">
                         </div>
                         <div class="ci-text">
                             <span>STRENGTH</span>
@@ -134,7 +134,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="class-item">
                         <div class="ci-pic">
-                            <img src="img/classes/class-4.jpg" alt="">
+                            <img src="/img/classes/class-4.jpg" alt="">
                         </div>
                         <div class="ci-text">
                             <span>Cardio</span>
@@ -146,7 +146,7 @@
                 <div class="col-lg-6">
                     <div class="class-item">
                         <div class="ci-pic">
-                            <img src="img/classes/class-5.jpg" alt="">
+                            <img src="/img/classes/class-5.jpg" alt="">
                         </div>
                         <div class="ci-text">
                             <span>Training</span>

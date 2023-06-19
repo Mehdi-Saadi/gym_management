@@ -7,7 +7,7 @@
     <meta name="keywords" content="Gym, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gym</title>
+    <title>{{ config('app.name', 'GYM') }}</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
@@ -41,20 +41,24 @@
     </div>
     <nav class="canvas-menu mobile-menu">
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="./about-us.html">About Us</a></li>
-            <li><a href="./classes.html">Classes</a></li>
-            <li><a href="./services.html">Services</a></li>
-            <li><a href="./team.html">Our Team</a></li>
+            <li><a href="{{ route('index') }}">Home</a></li>
+            <li><a href="{{ route('about') }}">About Us</a></li>
+            <li><a href="{{ route('classes') }}">Classes</a></li>
+            <li><a href="{{ route('trainers') }}">Our Team</a></li>
             <li><a href="#">Pages</a>
                 <ul class="dropdown">
-                    <li><a href="./class-timetable.html">Classes timetable</a></li>
-                    <li><a href="./bmi-calculator.html">Bmi calculate</a></li>
-                    <li><a href="./gallery.html">Gallery</a></li>
-                    <li><a href="./blog.html">Our blog</a></li>
+                    <li><a href="{{ route('timetable') }}">Classes timetable</a></li>
+                    <li><a href="{{ route('bmi') }}">Bmi calculate</a></li>
+                    <li><a href="{{ route('gallery') }}">Gallery</a></li>
+                    <li><a href="{{ route('blog') }}">Our blog</a></li>
                 </ul>
             </li>
-            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="{{ route('contact') }}">Contact</a></li>
+            @auth
+                <li><a href="{{ route('contact') }}">Dashboard</a></li>
+            @else
+                <li><a href="{{ route('login') }}">Login</a></li>
+            @endauth
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -81,23 +85,38 @@
             <div class="col-lg-6">
                 <nav class="nav-menu">
                     <ul>
-                        <li class="active"><a href="/">Home</a></li>
-                        <li><a href="./about-us.html">About Us</a></li>
-                        <li><a href="./class-details.html">Classes</a></li>
-                        <li><a href="./services.html">Services</a></li>
-                        <li><a href="./team.html">Our Team</a></li>
-                        <li><a href="#">Pages</a>
+                        <li class="{{ isActive('index') }}"><a href="{{ route('index') }}">Home</a></li>
+                        <li class="{{ isActive('about') }}"><a href="{{ route('about') }}">About Us</a></li>
+                        <li class="{{ isActive('classes') }}"><a href="{{ route('classes') }}">Classes</a></li>
+                        <li class="{{ isActive('trainers') }}"><a href="{{ route('trainers') }}">Our Team</a></li>
+                        <li class="{{ isActive(['timetable', 'bmi', 'gallery', 'blog']) }}"><a href="#">Pages</a>
                             <ul class="dropdown">
-                                <li><a href="./about-us.html">About us</a></li>
-                                <li><a href="./class-timetable.html">Classes timetable</a></li>
-                                <li><a href="./bmi-calculator.html">Bmi calculate</a></li>
-                                <li><a href="./team.html">Our team</a></li>
-                                <li><a href="./gallery.html">Gallery</a></li>
-                                <li><a href="./blog.html">Our blog</a></li>
-                                <li><a href="./404.html">404</a></li>
+                                <li><a href="{{ route('timetable') }}">Classes timetable</a></li>
+                                <li><a href="{{ route('bmi') }}">Bmi calculate</a></li>
+                                <li><a href="{{ route('gallery') }}">Gallery</a></li>
+                                <li><a href="{{ route('blog') }}">Our blog</a></li>
                             </ul>
                         </li>
-                        <li><a href="./contact.html">Contact</a></li>
+                        <li class="{{ isActive('contact') }}"><a href="{{ route('contact') }}">Contact</a></li>
+                        @auth
+                            <li><a href="#">{{ Auth::user()->name }}</a>
+                                <ul class="dropdown">
+                                    <li><a href="{{ route('contact') }}">Dashboard</a></li>
+                                    <hr>
+                                    <li><a href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a></li>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </ul>
+                            </li>
+                        @else
+                            <li><a href="{{ route('login') }}">Login</a></li>
+                        @endauth
                     </ul>
                 </nav>
             </div>
@@ -240,7 +259,7 @@
     <div class="h-100 d-flex align-items-center justify-content-center">
         <div class="search-close-switch">+</div>
         <form class="search-model-form">
-            <input type="text" id="search-input" placeholder="Search here.....">
+            <input type="text" id="search-input" placeholder="Search here...">
         </form>
     </div>
 </div>
@@ -255,5 +274,6 @@
 <script src="/js/jquery.slicknav.js"></script>
 <script src="/js/owl.carousel.min.js"></script>
 <script src="/js/main.js"></script>
+@include('sweetalert::alert')
 </body>
 </html>

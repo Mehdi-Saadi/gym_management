@@ -9,7 +9,7 @@
                     <div class="breadcrumb-text">
                         <h2>Our Blog</h2>
                         <div class="bt-option">
-                            <a href="./index.html">Home</a>
+                            <a href="{{ route('index') }}">Home</a>
                             <a href="#">Pages</a>
                             <span>Blog</span>
                         </div>
