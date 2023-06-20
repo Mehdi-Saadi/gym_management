@@ -7,6 +7,7 @@
 @section('content')
 <div class="container">
 
+    <!-- logo -->
     <div class="row d-flex justify-content-center">
         <div class="logo mt-5">
             <a href="/">
@@ -42,6 +43,12 @@
                                     </button>
                                 </form>
                                 <hr>
+                                <div class="text-center">
+                                    <a class="small" href="{{ route('register') }}">Create an Account!</a>
+                                </div>
+                                <div class="text-center">
+                                    <a class="small" href="{{ route('login') }}">Already have an account? Login!</a>
+                                </div>
                                 <div class="text-center">
                                     @if (session('status'))
                                         <div class="alert alert-success" role="alert">

@@ -10,6 +10,12 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+    ];
+
+    public $timestamps = false;
+
     /**
      * @return HasOne
      * connection between courses and categories table

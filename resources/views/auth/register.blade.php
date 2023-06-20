@@ -7,6 +7,7 @@
 @section('content')
 <div class="container">
 
+    <!-- logo -->
     <div class="row d-flex justify-content-center">
         <div class="logo mt-5">
             <a href="/">
