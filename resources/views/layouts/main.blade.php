@@ -95,7 +95,7 @@
                             <li><a href="#">{{ Auth::user()->name }}</a>
                                 <ul class="dropdown">
                                     @if(auth()->user()->is_admin === 1)
-                                        <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                        <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                                     @else
                                         <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                                     @endif
