@@ -17,14 +17,14 @@
             <div id="content">
 
                 <!-- Topbar -->
-                @include('admin.layouts.topbar')
+                @include('admin.layouts.topbar', ['user_name' => auth()->user()->name, 'user_photo' => auth()->user()->photo_name])
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Users</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Categories</h1>
 
                     <!-- Table data -->
                     <div class="card shadow mb-4">
@@ -68,12 +68,17 @@
                                 </form>
                             </div>
 
-
                             <div class="col-md d-flex justify-content-end">
                                 <form class="d-sm-inline-block form-inline ml-auto mr-md-3 my-2 my-md-0 mw-100" method="post" action="{{ route('admin.addCategory') }}">
                                     @csrf
                                     <div class="input-group">
-                                        <input type="text" name="name" class="form-control bg-light small" placeholder="New category">
+                                        <input type="text" name="name" class="form-control bg-light small" placeholder="New category" autocomplete="off">
+                                        <!-- show error if exists -->
+                                        @error('name')
+                                        @php
+                                            alert('', "$message", 'error');
+                                        @endphp
+                                        @enderror
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="submit">Save</button>
                                         </div>
@@ -83,19 +88,19 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                     <tr>
                                         <th>Number</th>
                                         <th>Name</th>
-                                        <th>More</th>
+                                        <th style="width: 300px; min-width: 180px">More</th>
                                     </tr>
                                     </thead>
                                     <tfoot>
                                     <tr>
                                         <th>Number</th>
                                         <th>Name</th>
-                                        <th>More</th>
+                                        <th style="width: 300px; min-width: 180px">More</th>
                                     </tr>
                                     </tfoot>
                                     <tbody>
@@ -104,14 +109,18 @@
                                         <tr>
                                             <td>{{ ++$number }}</td>
                                             <td>{{ $category->name }}</td>
-                                            <td>
-                                                <div class="d-flex justify-content-end">
-                                                    <a href="#" class="btn btn-secondary btn-sm">Change</a>
-                                                    <form method="post" action="{{ route('admin.deleteCategory', $category->id) }}">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                                    </form>
+                                            <td style="width: 300px; min-width: 180px">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <a href="{{ route('admin.editCategory', $category->id) }}" class="btn btn-secondary btn-sm">Change</a>
+                                                    </div>
+                                                    <div class="col">
+                                                        <form method="post" action="{{ route('admin.deleteCategory', $category->id) }}">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -120,6 +129,9 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                        <div class="card-footer">
+                            {{ $categories->render() }}
                         </div>
                     </div>
 

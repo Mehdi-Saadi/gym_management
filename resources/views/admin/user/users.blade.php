@@ -17,7 +17,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                @include('admin.layouts.topbar')
+                @include('admin.layouts.topbar', ['user_name' => auth()->user()->name, 'user_photo' => auth()->user()->photo_name])
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -84,7 +84,7 @@
 
                                 <form action="">
                                     <input type="hidden" name="writer" value="1">
-                                    <button class="btn btn-secondary btn-sm ml-1 mr-4" type="submit">
+                                    <button class="btn btn-info btn-sm ml-1 mr-4" type="submit">
                                         Writers
                                     </button>
                                 </form>
@@ -92,7 +92,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                     <tr>
                                         <th>Photo</th>
@@ -102,6 +102,7 @@
                                         <th>Gender</th>
                                         <th>Class</th>
                                         <th>Joined At</th>
+                                        <th>Permission</th>
                                         <th>More</th>
                                     </tr>
                                     </thead>
@@ -114,6 +115,7 @@
                                         <th>Gender</th>
                                         <th>Class</th>
                                         <th>Joined At</th>
+                                        <th>Permission</th>
                                         <th>More</th>
                                     </tr>
                                     </tfoot>
@@ -154,9 +156,24 @@
                                                 @elseif($user->is_trainer === 1)
                                                     <span class="btn btn-primary btn-sm">Trainer</span>
                                                 @elseif($user->is_writer === 1)
-                                                    <span class="btn btn-secondary btn-sm">Writer</span>
+                                                    <span class="btn btn-info btn-sm">Writer</span>
+                                                @else
+                                                    -
                                                 @endif
-                                                <a href="#" class="btn btn-danger btn-sm">Change</a>
+                                            </td>
+                                            <td style="width: 300px; min-width: 180px">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <a href="{{ route('admin.editUser', $user->id) }}" class="btn btn-secondary btn-sm">Change</a>
+                                                    </div>
+                                                    <div class="col">
+                                                        <form method="post" action="{{ route('admin.deleteUser', $user->id) }}">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -164,6 +181,10 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                        <!-- end card body -->
+                        <div class="card-footer">
+                            {{ $users->render() }}
                         </div>
                     </div>
 

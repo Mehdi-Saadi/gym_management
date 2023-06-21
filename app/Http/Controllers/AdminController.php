@@ -44,12 +44,33 @@ class AdminController extends Controller
         }
 
         $users = $users->latest()->paginate(20);
-        return view('admin.users', compact('users'));
+        return view('admin.user.users', compact('users'));
+    }
+
+    public function deleteUser(User $user)
+    {
+        $user->delete();
+
+        alert('', 'User Deleted!', 'success');
+        return back();
+    }
+
+    public function editUser(User $user)
+    {
+        return view('admin.user.editUser', compact('user'));
+    }
+
+    public function updateUser(Request $request, User $user)
+    {
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+
+        ]);
     }
 
     public function classes()
     {
         return view('admin.classes');
     }
-
 }

@@ -17,7 +17,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                @include('admin.layouts.topbar')
+                @include('admin.layouts.topbar', ['user_name' => auth()->user()->name, 'user_photo' => auth()->user()->photo_name])
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->

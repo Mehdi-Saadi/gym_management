@@ -10,30 +10,53 @@ class CategoryController extends Controller
 
     public function categories()
     {
-        $categories = Category::all();
+        $categories = Category::query();
 
-        return view('admin.categories', compact('categories'));
+        if ($keyword = request('search')) {
+            $categories->where('name', 'LIKE', "%{$keyword}%");
+        }
+
+        $categories = $categories->paginate(20);
+
+        return view('admin.category.categories', compact('categories'));
     }
 
     public function addCategory(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:categories,name',
         ]);
 
+        // save data
         Category::create($data);
-        toast('Category Saved!','success');
-        return to_route('admin.categories');
+
+        alert('', 'Category Saved!','success');
+        return back();
     }
 
     public function deleteCategory(Category $category)
     {
         $category->delete();
+
+        alert('', 'Category Deleted!', 'success');
         return back();
     }
 
     public function editCategory(Category $category)
     {
+        return view('admin.category.editCategory', compact('category'));
+    }
 
+    public function updateCategory(Request $request, Category $category)
+    {
+        $data = $request->validate([
+            'name' => 'required|max:255|unique:categories,name',
+        ]);
+
+        // update data
+        $category->update($data);
+
+        alert('', 'Category Updated!', 'success');
+        return back();
     }
 }
