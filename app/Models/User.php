@@ -14,11 +14,6 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function __construct()
-    {
-
-    }
-
     /**
      * The attributes that are mass assignable.
      *
@@ -27,9 +22,13 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'email',
-        'password',
+        'age',
+        'gender',
+        'photo_name',
         'is_admin',
         'is_trainer',
+        'is_writer',
+        'password',
     ];
 
     /**
@@ -49,6 +48,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'password' => 'hashed',
     ];
 
     /**

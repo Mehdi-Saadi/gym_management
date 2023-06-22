@@ -17,7 +17,7 @@
 
     <!-- Custom styles for this template-->
     <link href="/dashboard/css/sb-admin-2.min.css" rel="stylesheet">
-
+    @yield('profile_style')
 </head>
 
 <body id="page-top" class="@yield('body-class')">
@@ -34,12 +34,21 @@
 <!-- Custom scripts for all pages-->
 <script src="/dashboard/js/sb-admin-2.min.js"></script>
 
+
+<!-- delete these files later -->
+
 <!-- Page level plugins -->
-<script src="/dashboard/vendor/chart.js/Chart.min.js"></script>
+{{--<script src="/dashboard/vendor/chart.js/Chart.min.js"></script>--}}
 
 <!-- Page level custom scripts -->
-<script src="/dashboard/js/demo/chart-area-demo.js"></script>
-<script src="/dashboard/js/demo/chart-pie-demo.js"></script>
+{{--<script src="/dashboard/js/demo/chart-area-demo.js"></script>--}}
+{{--<script src="/dashboard/js/demo/chart-pie-demo.js"></script>--}}
+
+<!-- end delete these files later -->
+
+
+<!-- select profile scripts -->
+@yield('profile_script')
 @include('sweetalert::alert')
 </body>
 </html>

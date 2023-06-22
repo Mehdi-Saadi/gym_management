@@ -17,7 +17,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                @include('admin.layouts.topbar', ['user_name' => auth()->user()->name, 'user_photo' => auth()->user()->photo_name])
+                @include('layouts.topbar-dash', ['user_name' => auth()->user()->name, 'user_photo' => auth()->user()->photo_name])
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -125,7 +125,7 @@
                                         <tr>
                                             <td>
                                                 @if(isset($user->photo_name))
-                                                    <img class="img-profile rounded-circle" src="{{ $user->photo_name }}" alt="user image">
+                                                    <img class="rounded-circle" src="{{ '/profile_imgs/' . $user->photo_name }}" alt="user image" style="width: 40px; height:40px">
                                                 @else
                                                     -
                                                 @endif
@@ -141,7 +141,11 @@
                                             </td>
                                             <td>
                                                 @if(isset($user->gender))
-                                                    {{ $user->gender }}
+                                                    @if($user->gender === 1)
+                                                        Male
+                                                    @else
+                                                        Female
+                                                    @endif
                                                 @else
                                                     -
                                                 @endif
@@ -153,12 +157,12 @@
                                             <td>
                                                 @if($user->is_admin === 1)
                                                     <span class="btn btn-success btn-sm">Admin</span>
-                                                @elseif($user->is_trainer === 1)
+                                                @endif
+                                                @if($user->is_trainer === 1)
                                                     <span class="btn btn-primary btn-sm">Trainer</span>
-                                                @elseif($user->is_writer === 1)
+                                                @endif
+                                                @if($user->is_writer === 1)
                                                     <span class="btn btn-info btn-sm">Writer</span>
-                                                @else
-                                                    -
                                                 @endif
                                             </td>
                                             <td style="width: 300px; min-width: 180px">
@@ -195,7 +199,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            @include('admin.layouts.footer')
+            @include('layouts.footer-dash')
             <!-- End of Footer -->
 
         </div>
@@ -210,5 +214,5 @@
     </a>
 
     <!-- Logout Modal-->
-    @include('admin.layouts.logout-modal')
+    @include('layouts.logout-modal-dash')
 @endsection

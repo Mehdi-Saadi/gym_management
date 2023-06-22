@@ -17,7 +17,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                @include('admin.layouts.topbar', ['user_name' => auth()->user()->name, 'user_photo' => auth()->user()->photo_name])
+                @include('layouts.topbar-dash', ['user_name' => auth()->user()->name, 'user_photo' => auth()->user()->photo_name])
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -64,7 +64,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            @include('admin.layouts.footer')
+            @include('layouts.footer-dash')
             <!-- End of Footer -->
 
         </div>
@@ -79,5 +79,5 @@
     </a>
 
     <!-- Logout Modal-->
-    @include('admin.layouts.logout-modal')
+    @include('layouts.logout-modal-dash')
 @endsection

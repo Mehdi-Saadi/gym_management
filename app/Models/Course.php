@@ -11,6 +11,14 @@ class Course extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'category_id',
+        'trainer_id',
+        'info',
+        'photo_name',
+        'count_of_sessions_per_week',
+    ];
+
     /**
      * @return BelongsTo
      * connection between trainers and courses table

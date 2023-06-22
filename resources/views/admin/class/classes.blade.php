@@ -17,7 +17,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                @include('admin.layouts.topbar', ['user_name' => auth()->user()->name, 'user_photo' => auth()->user()->photo_name])
+                @include('layouts.topbar-dash', ['user_name' => auth()->user()->name, 'user_photo' => auth()->user()->photo_name])
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -25,7 +25,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Cards</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Classes</h1>
                     </div>
 
                     <div class="row">
@@ -202,7 +202,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            @include('admin.layouts.footer')
+            @include('layouts.footer-dash')
             <!-- End of Footer -->
 
         </div>
@@ -217,5 +217,5 @@
     </a>
 
     <!-- Logout Modal-->
-    @include('admin.layouts.logout-modal')
+    @include('layouts.logout-modal-dash')
 @endsection

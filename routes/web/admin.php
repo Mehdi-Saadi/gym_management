@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+
 // user routes
 Route::prefix('users')->group(function () {
     Route::get('/', [AdminController::class, 'users'])->name('users');
@@ -13,7 +15,13 @@ Route::prefix('users')->group(function () {
     Route::put('/{user}/update', [AdminController::class, 'updateUser'])->name('updateUser');
 });
 
-Route::get('/classes', [AdminController::class, 'classes'])->name('classes');
+// class routes
+Route::prefix('classes')->group(function () {
+    Route::get('/', [CourseController::class, 'classes'])->name('classes');
+    Route::get('/create', [CourseController::class, 'createClass'])->name('createClass');
+    Route::post('/add', [CourseController::class, 'addClass'])->name('addClass');
+});
+
 // category routes
 Route::prefix('categories')->group(function () {
     Route::get('/', [CategoryController::class, 'categories'])->name('categories');

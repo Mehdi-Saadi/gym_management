@@ -2,6 +2,18 @@
 
 @section('title', 'Admin-Edit-User')
 
+@section('profile_style')
+    <style>
+        .profile-pic-div{
+            height: 8rem;
+            width: 8rem;
+        }
+        #uploadBtn{
+            cursor: pointer;
+        }
+    </style>
+@endsection
+
 @section('content')
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -17,7 +29,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                @include('admin.layouts.topbar', ['user_name' => auth()->user()->name, 'user_photo' => auth()->user()->photo_name])
+                @include('layouts.topbar-dash', ['user_name' => auth()->user()->name, 'user_photo' => auth()->user()->photo_name])
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -42,7 +54,20 @@
                                                 <form class="user" method="POST" action="{{ route('admin.updateUser', $user->id) }}" enctype="multipart/form-data">
                                                     @csrf
                                                     @method('put')
-                                                    @if(isset($user_photo)) <img class="img-profile rounded-circle" src="{{ $user_photo }}"> @endif
+                                                    <!-- profile photo -->
+                                                    <div class="form-group d-flex justify-content-center">
+                                                        <div class="profile-pic-div rounded-circle overflow-hidden border border-secondary">
+                                                            <input type="file" name="photo" id="file" class="d-none">
+                                                            <label for="file" id="uploadBtn">
+                                                                <img src="@if(isset($user->photo_name)) {{ '/profile_imgs/' . $user->photo_name }} @else /profile_select/image.svg @endif" id="photo" class="w-100 h-100">
+                                                            </label>
+                                                            @error('photo')
+                                                            @php
+                                                                alert('', "$message", 'error');
+                                                            @endphp
+                                                            @enderror
+                                                        </div>
+                                                    </div>
                                                     <div class="form-group">
                                                         <input type="text" class="form-control form-control-user @error('name') is-invalid @enderror" id="name" placeholder="Name" name="name" value="{{ old('name', $user->name) }}" required autocomplete="name" autofocus>
                                                         @error('name')
@@ -61,7 +86,12 @@
                                                     </div>
                                                     <div class="form-group row">
                                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                                            <input type="number" placeholder="Age" id="age" class="form-control form-control-user" name="age" min="0" max="100" value="@if(isset($user->age)) {{ old('age', $user->age) }} @else {{ old('age') }} @endif" required>
+                                                            <input type="number" placeholder="Age" id="age" class="form-control form-control-user @error('age') is-invalid @enderror" name="age" min="10" max="100" value="@if(isset($user->age)){{ old('age', $user->age) }}@endif" required>
+                                                            @error('age')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <div class="mt-2">
@@ -81,6 +111,12 @@
                                                                             echo 'checked';
                                                                     }
                                                                     @endphp>
+                                                                <!-- show gender error -->
+                                                                @error('gender')
+                                                                @php
+                                                                    alert('', "$message", 'error');
+                                                                @endphp
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -97,12 +133,31 @@
                                                             <input type="password" class="form-control form-control-user" id="password-confirm" placeholder="Repeat Password" name="password_confirmation">
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <div class="mb-3">
-                                                            <label for="photo" class="form-label">Choose a profile image:</label>
-                                                            <input class="form-control form-control-sm" type="file" name="photo" id="photo">
+                                                    <!-- permission part -->
+                                                    <div class="form-group row">
+                                                        <div class="col-md-3">
+                                                            <span class="fw-bolder">Permissions:</span><br>
+                                                        </div>
+                                                        <div class="col-md-3 row">
+                                                            <label class="form-check-label mr-2" for="admin">
+                                                                Admin
+                                                            </label>
+                                                            <input type="checkbox" class="form-check" id="admin" name="admin" @checked(old('admin', $user->is_admin))>
+                                                        </div>
+                                                        <div class="col-md-3 row">
+                                                            <label class="form-check-label mr-2" for="trainer">
+                                                                Trainer
+                                                            </label>
+                                                            <input type="checkbox" class="form-check" id="trainer" name="trainer" @checked(old('trainer', $user->is_trainer))>
+                                                        </div>
+                                                        <div class="col-md-3 row">
+                                                            <label class="form-check-label mr-2" for="writer">
+                                                                Writer
+                                                            </label>
+                                                            <input type="checkbox" class="form-check" id="writer" name="writer" @checked(old('writer', $user->is_writer))>
                                                         </div>
                                                     </div>
+                                                    <!-- end permission part -->
                                                     <button type="submit" class="btn btn-primary btn-user btn-block">
                                                         Save
                                                     </button>
@@ -122,7 +177,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            @include('admin.layouts.footer')
+            @include('layouts.footer-dash')
             <!-- End of Footer -->
 
         </div>
@@ -137,5 +192,9 @@
     </a>
 
     <!-- Logout Modal-->
-    @include('admin.layouts.logout-modal')
+    @include('layouts.logout-modal-dash')
+@endsection
+
+@section('profile_script')
+    <script src="/profile_select/app.js"></script>
 @endsection

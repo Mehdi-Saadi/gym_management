@@ -15,7 +15,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ $user_name }}</span>
-                @if(isset($user_photo)) <img class="img-profile rounded-circle" src="{{ $user_photo }}"> @endif
+                @if(isset($user_photo)) <img class="img-profile rounded-circle" src="{{ '/profile_imgs/' . $user_photo }}"> @endif
 {{--                <img class="img-profile rounded-circle" src="/dashboard/img/undraw_profile.svg">--}}
             </a>
             <!-- Dropdown - User Information -->

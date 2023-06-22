@@ -11,6 +11,17 @@ class Trainer extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'experience',
+        'category_id',
+        'instagram',
+        'twitter',
+        'facebook',
+        'youtube',
+        'info',
+    ];
+
     /**
      * @return BelongsTo
      * connection between users and trainers table

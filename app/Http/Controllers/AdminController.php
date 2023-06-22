@@ -3,14 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $users = User::where('is_admin', 0)->where('is_trainer', 0)->where('is_writer', 0)->count();
+        $trainers = User::where('is_trainer', 1)->count();
+        $writers = User::where('is_writer', 1)->count();
+        $classes = Course::all()->count();
+
+        return view('admin.dashboard', [
+            'users' => $users,
+            'trainers' => $trainers,
+            'writers' => $writers,
+            'classes' => $classes,
+        ]);
     }
 
     public function users()
@@ -64,13 +76,49 @@ class AdminController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'age' => ['required', 'numeric', 'max:100', 'min:10'],
+            'gender' => ['required', Rule::in(['1', '0'])]
         ]);
-    }
 
-    public function classes()
-    {
-        return view('admin.classes');
+        if (! is_null($request->password)) {
+            $request->validate([
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
+            $data['password'] = $request->password;
+        }
+
+        if (! is_null($request->file('photo'))) {
+            $request->validate([
+                'photo' => 'required|image',
+            ]);
+
+            $file = $request->file('photo');
+            $file->move(public_path('profile_imgs'), $data['photo_name'] = $user->id . '.' . $file->getClientOriginalExtension());
+        }
+
+        // set permissions
+        if (is_null($request->admin)) {
+            $data['is_admin'] = 0;
+        } else {
+            $data['is_admin'] = 1;
+        }
+
+        if (is_null($request->trainer)) {
+            $data['is_trainer'] = 0;
+        } else {
+            $data['is_trainer'] = 1;
+        }
+
+        if (is_null($request->writer)) {
+            $data['is_writer'] = 0;
+        } else {
+            $data['is_writer'] = 1;
+        }
+
+        $user->update($data);
+
+        alert('', 'User Changed!', 'success');
+        return back();
     }
 }

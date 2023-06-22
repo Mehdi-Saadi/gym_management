@@ -10,6 +10,11 @@ class Member extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'course_id',
+    ];
+
     /**
      * @return BelongsTo
      * connection between users and members table
