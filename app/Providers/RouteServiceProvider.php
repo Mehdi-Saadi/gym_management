@@ -33,13 +33,21 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
+            // public routes
             Route::middleware('web')
                 ->group(base_path('routes/web/home.php'));
 
+            // admin routes
             Route::middleware(['web', 'auth', 'auth.admin', 'verified'])
                 ->name('admin.')
                 ->prefix('admin')
                 ->group(base_path('routes/web/admin.php'));
+
+            // trainer routes
+            Route::middleware(['web', 'auth', 'auth.trainer', 'verified'])
+                ->name('trainer.')
+                ->prefix('trainer')
+                ->group(base_path('routes/web/trainer.php'));
         });
     }
 }

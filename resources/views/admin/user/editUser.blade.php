@@ -158,9 +158,16 @@
                                                         </div>
                                                     </div>
                                                     <!-- end permission part -->
-                                                    <button type="submit" class="btn btn-primary btn-user btn-block">
-                                                        Save
-                                                    </button>
+                                                    <div class="row mt-5">
+                                                        <div class="col">
+                                                            <a href="{{ route('admin.users') }}" class="btn btn-secondary btn-user">Cancel</a>
+                                                        </div>
+                                                        <div class="col">
+                                                            <button type="submit" class="btn btn-primary btn-user btn-block">
+                                                                Save
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                 </form>
                                             </div>
                                         </div>

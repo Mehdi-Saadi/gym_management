@@ -18,6 +18,12 @@ return new class extends Migration
             $table->integer('age')->nullable();
             $table->boolean('gender')->nullable();
             $table->string('photo_name')->nullable();
+            $table->integer('experience')->nullable(); // sepecific columns for trainers
+            $table->string('instagram')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('youtube')->nullable();
+            $table->string('info')->nullable(); // end sepecific columns for trainers
             $table->boolean('is_admin')->default(0);
             $table->boolean('is_trainer')->default(0);
             $table->boolean('is_writer')->default(0);

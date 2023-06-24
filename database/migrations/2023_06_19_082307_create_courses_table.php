@@ -14,19 +14,20 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('trainer_id');
-            $table->string('info');
-            $table->string('photo_name');
-            $table->integer('count_of_sessions_per_week');
+            $table->unsignedBigInteger('user_id');
+            $table->string('name');
+            $table->string('info')->nullable();
+            $table->string('photo_name')->nullable();
+            $table->integer('sessions_per_week');
             $table->timestamps();
             $table->foreign('category_id')
                 ->references('id')
                 ->on('categories')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->foreign('trainer_id')
+            $table->foreign('user_id')
                 ->references('id')
-                ->on('trainers')
+                ->on('users')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
         });

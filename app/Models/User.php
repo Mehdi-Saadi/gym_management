@@ -52,12 +52,12 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
-     * @return HasOne
-     * connection between users and trainers table
+     * @return HasMany
+     * connection between users and courses table
      */
-    public function trainer(): HasOne
+    public function courses(): HasMany
     {
-        return $this->hasOne(Trainer::class);
+        return $this->hasMany(Course::class);
     }
 
     /**

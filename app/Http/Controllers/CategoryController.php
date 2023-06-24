@@ -24,7 +24,7 @@ class CategoryController extends Controller
     public function addCategory(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required|max:255|unique:categories,name',
+            'name' => 'required|max:100|unique:categories,name',
         ]);
 
         // save data
@@ -50,7 +50,7 @@ class CategoryController extends Controller
     public function updateCategory(Request $request, Category $category)
     {
         $data = $request->validate([
-            'name' => 'required|max:255|unique:categories,name',
+            'name' => 'required|max:100|unique:categories,name',
         ]);
 
         // update data

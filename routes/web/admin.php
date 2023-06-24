@@ -20,6 +20,10 @@ Route::prefix('classes')->group(function () {
     Route::get('/', [CourseController::class, 'classes'])->name('classes');
     Route::get('/create', [CourseController::class, 'createClass'])->name('createClass');
     Route::post('/add', [CourseController::class, 'addClass'])->name('addClass');
+    Route::delete('/{course}/delete', [CourseController::class, 'deleteClass'])->name('deleteClass');
+    Route::get('/{course}/edit', [CourseController::class, 'editClass'])->name('editClass');
+    Route::put('/{course}/update', [CourseController::class, 'updateClass'])->name('updateClass');
+    Route::get('/{course}/info', [CourseController::class, 'classes'])->name('infoClass');
 });
 
 // category routes

@@ -13,19 +13,20 @@ class Course extends Model
 
     protected $fillable = [
         'category_id',
-        'trainer_id',
+        'user_id',
+        'name',
         'info',
         'photo_name',
-        'count_of_sessions_per_week',
+        'sessions_per_week',
     ];
 
     /**
      * @return BelongsTo
-     * connection between trainers and courses table
+     * connection between users and courses table
      */
-    public function trainer(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Trainer::class);
+        return $this->belongsTo(User::class);
     }
 
     /**

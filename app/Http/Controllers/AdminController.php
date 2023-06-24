@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
@@ -42,25 +43,29 @@ class AdminController extends Controller
         }
 
         if ($keyword = \request('search')) {
+            $users->where('name', 'LIKE', "%{$keyword}%")
+                ->orWhere('email', 'LIKE', "%{$keyword}%")
+                ->orWhere('age', $keyword);
             if (strtolower($keyword) === 'male') {
-                $users->where('gender', 1);
+                $users->orWhere('gender', 1);
             }
 
             if (strtolower($keyword) == 'female') {
-                $users->where('gender', 0);
+                $users->orWhere('gender', 0);
             }
-
-            $users->where('name', 'LIKE', "%{$keyword}%")
-                ->orWhere('email', 'LIKE', "%{$keyword}%")
-                ->orWhere('age', "%{$keyword}%");
         }
 
-        $users = $users->latest()->paginate(20);
+        $users = $users->orderBy('name')->paginate(20);
         return view('admin.user.users', compact('users'));
     }
 
     public function deleteUser(User $user)
     {
+        // delete profile photo if exists
+        if (File::exists(public_path('profile_imgs\\' . $user->photo_name))) {
+            File::delete(public_path('profile_imgs\\' . $user->photo_name));
+        }
+
         $user->delete();
 
         alert('', 'User Deleted!', 'success');
@@ -75,7 +80,7 @@ class AdminController extends Controller
     public function updateUser(Request $request, User $user)
     {
         $data = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:20'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'age' => ['required', 'numeric', 'max:100', 'min:10'],
             'gender' => ['required', Rule::in(['1', '0'])]
@@ -119,6 +124,6 @@ class AdminController extends Controller
         $user->update($data);
 
         alert('', 'User Changed!', 'success');
-        return back();
+        return to_route('admin.users');
     }
 }

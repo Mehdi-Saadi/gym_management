@@ -24,175 +24,112 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Classes</h1>
-                    </div>
+                    <h1 class="h3 mb-2 text-gray-800">Classes</h1>
 
-                    <div class="row">
+                    <!-- Table data -->
+                    <div class="card shadow mb-4">
+                        <div class="row card-header py-3 mx-0">
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Annual) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tasks Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                            <!-- Search Dropdown (Visible Only XS) -->
+                            <div class="nav-item dropdown no-arrow d-sm-none">
+                                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-search fa-fw"></i>
+                                </a>
+                                <!-- Dropdown - Messages -->
+                                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                     aria-labelledby="searchDropdown">
+                                    <form class="form-inline mr-auto w-100 navbar-search" action="">
+                                        <div class="input-group">
+                                            <input type="text" name="search" class="form-control bg-light border-0 small"
+                                                   placeholder="Search..." aria-label="Search"
+                                                   aria-describedby="basic-addon2" autocomplete="off">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="submit">
+                                                    <i class="fas fa-search fa-sm"></i>
+                                                </button>
                                             </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                             style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                             aria-valuemax="100"></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- search bar -->
+                            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="">
+                                <div class="input-group">
+                                    <input type="text" name="search" class="form-control bg-light small" placeholder="Search..." aria-label="Search" aria-describedby="basic-addon2" autocomplete="off">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Members</th>
+                                        <th>Trainer</th>
+                                        <th>Category</th>
+                                        <th>Sessions per week</th>
+                                        <th>Info</th>
+                                        <th>More</th>
+                                    </tr>
+                                    </thead>
+                                    <tfoot>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Members</th>
+                                        <th>Trainer</th>
+                                        <th>Category</th>
+                                        <th>Sessions per week</th>
+                                        <th>Info</th>
+                                        <th>More</th>
+                                    </tr>
+                                    </tfoot>
+                                    <tbody>
+
+                                    @foreach($courses as $course)
+                                        <tr>
+                                            <td>{{ $course->name }}</td>
+                                            <td>{{ $course->members->count() }}</td>
+                                            <td>{{ $course->user->name }}</td>
+                                            <td>{{ $course->category->name }}</td>
+                                            <td>{{ $course->sessions_per_week }}</td>
+                                            <td>{{ $course->info }}</td>
+                                            <td style="width: 300px; min-width: 180px">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <a href="{{ route('admin.infoClass', $course->id) }}" class="btn btn-info btn-sm">More</a>
+                                                    </div>
+                                                    <div class="col">
+                                                        <a href="{{ route('admin.editClass', $course->id) }}" class="btn btn-secondary btn-sm">Change</a>
+                                                    </div>
+                                                    <div class="col">
+                                                        <form method="post" action="{{ route('admin.deleteClass', $course->id) }}">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                        </form>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <!-- end card body -->
+                        <div class="card-footer">
+{{--                            {{ $courses->render() }}--}}
                         </div>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-lg-6">
-
-                            <!-- Default Card Example -->
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    Default Card Example
-                                </div>
-                                <div class="card-body">
-                                    This card uses Bootstrap's default styling with no utility classes added. Global
-                                    styles are the only things modifying the look and feel of this default card example.
-                                </div>
-                            </div>
-
-                            <!-- Basic Card Example -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Basic Card Example</h6>
-                                </div>
-                                <div class="card-body">
-                                    The styling for this basic card example is created by using default Bootstrap
-                                    utility classes. By using utility classes, the style of the card component can be
-                                    easily modified with no need for any custom CSS!
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-6">
-
-                            <!-- Dropdown Card Example -->
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Dropdown Card Example</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                             aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    Dropdown menus can be placed in the card header in order to extend the functionality
-                                    of a basic card. In this dropdown card example, the Font Awesome vertical ellipsis
-                                    icon in the card header can be clicked on in order to toggle a dropdown menu.
-                                </div>
-                            </div>
-
-                            <!-- Collapsable Card Example -->
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Accordion -->
-                                <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
-                                   role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                                    <h6 class="m-0 font-weight-bold text-primary">Collapsable Card Example</h6>
-                                </a>
-                                <!-- Card Content - Collapse -->
-                                <div class="collapse show" id="collapseCardExample">
-                                    <div class="card-body">
-                                        This is a collapsable card example using Bootstrap's built in collapse
-                                        functionality. <strong>Click on the card header</strong> to see the card body
-                                        collapse and expand!
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
                     </div>
 
                 </div>
