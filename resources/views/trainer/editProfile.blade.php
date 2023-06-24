@@ -19,7 +19,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        @include('admin.layouts.sidebar')
+        @include('trainer.layouts.sidebar')
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -36,7 +36,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Edit User</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Edit Profile</h1>
 
                     <!-- user data -->
                     <div class="row d-flex justify-content-center">
@@ -51,7 +51,7 @@
                                                 <div class="text-center">
                                                     <h1 class="h4 text-gray-900 mb-4">User Data</h1>
                                                 </div>
-                                                <form class="user" method="POST" action="{{ route('admin.updateUser', $user->id) }}" enctype="multipart/form-data">
+                                                <form class="user" method="POST" action="{{ route('trainer.updateProfile', $user->id) }}" enctype="multipart/form-data">
                                                     @csrf
                                                     @method('put')
                                                     <!-- profile photo -->
@@ -69,6 +69,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
+                                                        <label for="name" class="form-label ml-2">Name:</label>
                                                         <input type="text" class="form-control form-control-user @error('name') is-invalid @enderror" id="name" placeholder="Name" name="name" value="{{ old('name', $user->name) }}" required autocomplete="name" autofocus>
                                                         @error('name')
                                                         <span class="invalid-feedback" role="alert">
@@ -77,6 +78,7 @@
                                                         @enderror
                                                     </div>
                                                     <div class="form-group">
+                                                        <label for="email" class="form-label ml-2">Email:</label>
                                                         <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror" id="email" placeholder="Email Address" name="email" value="{{ old('email', $user->email) }}" required autocomplete="email">
                                                         @error('email')
                                                         <span class="invalid-feedback" role="alert">
@@ -86,6 +88,7 @@
                                                     </div>
                                                     <div class="form-group row">
                                                         <div class="col-sm-6 mb-3 mb-sm-0">
+                                                            <label for="age" class="form-label ml-2">Age:</label>
                                                             <input type="number" placeholder="Age" id="age" class="form-control form-control-user @error('age') is-invalid @enderror" name="age" min="10" max="100" value="@if(isset($user->age)){{ old('age', $user->age) }}@endif" required>
                                                             @error('age')
                                                             <span class="invalid-feedback" role="alert">
@@ -94,6 +97,7 @@
                                                             @enderror
                                                         </div>
                                                         <div class="col-sm-6">
+                                                            <label for="experience" class="form-label ml-2">Experience:</label>
                                                             <input type="number" placeholder="Experience" id="experience" class="form-control form-control-user @error('experience') is-invalid @enderror" name="experience" max="100" value="@if(isset($user->experience)){{ old('experience', $user->experience) }}@endif" required>
                                                             @error('experience')
                                                             <span class="invalid-feedback" role="alert">
@@ -102,31 +106,49 @@
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                    <div class="form-group row d-flex justify-content-center">
-                                                        <div class="mt-2">
-                                                            <label for="male" class="form-check-label mr-4">Male</label>
-                                                            <input type="radio" class="form-check-input" id="male" name="gender" value="1"
-                                                                @php
-                                                                    if(isset($user->gender)) {
-                                                                        if ($user->gender === 1)
-                                                                            echo 'checked';
-                                                                    }
-                                                                @endphp>
-                                                            <label for="female" class="form-check-label mr-4">Female</label>
-                                                            <input type="radio" class="form-check-input" id="female" name="gender" value="0"
-                                                                @php
-                                                                    if(isset($user->gender)) {
-                                                                        if ($user->gender === 0)
-                                                                            echo 'checked';
-                                                                    }
-                                                                @endphp>
-                                                            <!-- show gender error -->
-                                                            @error('gender')
-                                                            @php
-                                                                alert('', "$message", 'error');
-                                                            @endphp
-                                                            @enderror
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-12">
+                                                            <textarea name="info" placeholder="About You..." class="form-control">{{ old('info', $user->info) }}</textarea>
                                                         </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="instagram" class="form-label ml-2">Instagram:</label>
+                                                        <input type="text" class="form-control form-control-user @error('instagram') is-invalid @enderror" id="instagram" placeholder="Instagram Address(can be empty)..." name="instagram" value="{{ old('instagram', $user->instagram) }}" autocomplete="off">
+                                                        @error('instagram')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="twitter" class="form-label ml-2">Twitter:</label>
+                                                        <input type="text" class="form-control form-control-user @error('twitter') is-invalid @enderror" id="twitter" placeholder="Twitter Address(can be empty)..." name="twitter" value="{{ old('twitter', $user->twitter) }}" autocomplete="off">
+                                                        @error('twitter')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="facebook" class="form-label ml-2">Facebook:</label>
+                                                        <input type="text" class="form-control form-control-user @error('facebook') is-invalid @enderror" id="facebook" placeholder="Facebook Address(can be empty)..." name="facebook" value="{{ old('facebook', $user->facebook) }}" autocomplete="off">
+                                                        @error('facebook')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="youtube" class="form-label ml-2">YouTube:</label>
+                                                        <input type="text" class="form-control form-control-user @error('youtube') is-invalid @enderror" id="youtube" placeholder="YouTube Address(can be empty)..." name="youtube" value="{{ old('youtube', $user->youtube) }}" autocomplete="off">
+                                                        @error('youtube')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="row">
+                                                        <label for="password" class="form-label ml-3">If you want change your pass: (can be empty)</label>
                                                     </div>
                                                     <div class="form-group row">
                                                         <div class="col-sm-6 mb-3 mb-sm-0">
@@ -141,34 +163,9 @@
                                                             <input type="password" class="form-control form-control-user" id="password-confirm" placeholder="Repeat Password" name="password_confirmation">
                                                         </div>
                                                     </div>
-                                                    <!-- permission part -->
-                                                    <div class="form-group row">
-                                                        <div class="col-md-3">
-                                                            <span class="fw-bolder">Permissions:</span><br>
-                                                        </div>
-                                                        <div class="col-md-3 row">
-                                                            <label class="form-check-label mr-2" for="admin">
-                                                                Admin
-                                                            </label>
-                                                            <input type="checkbox" class="form-check" id="admin" name="admin" @checked(old('admin', $user->is_admin))>
-                                                        </div>
-                                                        <div class="col-md-3 row">
-                                                            <label class="form-check-label mr-2" for="trainer">
-                                                                Trainer
-                                                            </label>
-                                                            <input type="checkbox" class="form-check" id="trainer" name="trainer" @checked(old('trainer', $user->is_trainer))>
-                                                        </div>
-                                                        <div class="col-md-3 row">
-                                                            <label class="form-check-label mr-2" for="writer">
-                                                                Writer
-                                                            </label>
-                                                            <input type="checkbox" class="form-check" id="writer" name="writer" @checked(old('writer', $user->is_writer))>
-                                                        </div>
-                                                    </div>
-                                                    <!-- end permission part -->
                                                     <div class="row mt-5">
                                                         <div class="col">
-                                                            <a href="{{ route('admin.users') }}" class="btn btn-secondary btn-user">Cancel</a>
+                                                            <a href="{{ route('trainer.profile') }}" class="btn btn-secondary btn-user">Cancel</a>
                                                         </div>
                                                         <div class="col">
                                                             <button type="submit" class="btn btn-primary btn-user btn-block">

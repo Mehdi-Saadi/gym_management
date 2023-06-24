@@ -34,7 +34,6 @@
 <!-- Custom scripts for all pages-->
 <script src="/dashboard/js/sb-admin-2.min.js"></script>
 
-
 <!-- delete these files later -->
 
 <!-- Page level plugins -->

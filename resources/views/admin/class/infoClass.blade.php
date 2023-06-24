@@ -1,6 +1,6 @@
 @extends('layouts.main-dash')
 
-@section('title', 'Admin-Classes')
+@section('title', 'Admin-Class-Information')
 
 @section('content')
     <!-- Page Wrapper -->
@@ -96,7 +96,7 @@
                         </div>
                         <!-- end card body -->
                         <div class="card-footer">
-                            {{ $courses->render() }}
+{{--                            {{ $courses->render() }}--}}
                         </div>
                     </div>
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Category;
+use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -83,6 +83,7 @@ class AdminController extends Controller
             'name' => ['required', 'string', 'max:20'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'age' => ['required', 'numeric', 'max:100', 'min:10'],
+            'experience' => ['required', 'numeric', 'max:100'],
             'gender' => ['required', Rule::in(['1', '0'])]
         ]);
 

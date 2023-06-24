@@ -51,7 +51,31 @@
                 </ul>
             </li>
             <li><a href="{{ route('contact') }}">Contact</a></li>
+            @auth
+                <li><a href="#">{{ Auth::user()->name }}</a>
+                    <ul class="dropdown">
+                        @if(auth()->user()->is_admin === 1)
+                            <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                        @elseif(auth()->user()->is_trainer === 1)
+                            <li><a href="{{ route('trainer.classes') }}">Dashboard</a></li>
+                        @else
+                            <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                        @endif
+                        <hr>
+                        <li><a href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a></li>
 
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </ul>
+                </li>
+            @else
+                <li><a href="{{ route('login') }}">Login</a></li>
+            @endauth
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -96,6 +120,8 @@
                                 <ul class="dropdown">
                                     @if(auth()->user()->is_admin === 1)
                                         <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                    @elseif(auth()->user()->is_trainer === 1)
+                                        <li><a href="{{ route('trainer.classes') }}">Dashboard</a></li>
                                     @else
                                         <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                                     @endif

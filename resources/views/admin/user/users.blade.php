@@ -30,42 +30,9 @@
                     <div class="card shadow mb-4">
                         <div class="row card-header py-3 mx-0">
 
-                            <!-- Search Dropdown (Visible Only XS) -->
-                            <div class="nav-item dropdown no-arrow d-sm-none">
-                                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-search fa-fw"></i>
-                                </a>
-                                <!-- Dropdown - Messages -->
-                                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                     aria-labelledby="searchDropdown">
-                                    <form class="form-inline mr-auto w-100 navbar-search" action="">
-                                        <div class="input-group">
-                                            <input type="text" name="search" class="form-control bg-light border-0 small"
-                                                   placeholder="Search..." aria-label="Search"
-                                                   aria-describedby="basic-addon2" autocomplete="off">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary" type="submit">
-                                                    <i class="fas fa-search fa-sm"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-
-                            <!-- search bar -->
-                            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="">
-                                <div class="input-group">
-                                    <input type="text" name="search" class="form-control bg-light small" placeholder="Search..." aria-label="Search" aria-describedby="basic-addon2" autocomplete="off">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="submit">
-                                            <i class="fas fa-search fa-sm"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-
+                            <!-- Search bar -->
+                            @include('layouts.searchbar-dash')
+                            <!-- end Search bar -->
 
                             <div class="row mt-1">
                                 <form action="">
@@ -100,6 +67,7 @@
                                         <th>Email</th>
                                         <th>Age</th>
                                         <th>Gender</th>
+                                        <th>Experience</th>
                                         <th>Class</th>
                                         <th>Joined At</th>
                                         <th>Permission</th>
@@ -113,6 +81,7 @@
                                         <th>Email</th>
                                         <th>Age</th>
                                         <th>Gender</th>
+                                        <th>Experience</th>
                                         <th>Class</th>
                                         <th>Joined At</th>
                                         <th>Permission</th>
@@ -146,6 +115,13 @@
                                                     @else
                                                         Female
                                                     @endif
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if(isset($user->experience))
+                                                    {{ $user->experience }}
                                                 @else
                                                     -
                                                 @endif
