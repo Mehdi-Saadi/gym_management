@@ -95,109 +95,25 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="class-item">
-                        <div class="ci-pic">
-                            <img src="/img/classes/class-1.jpg" alt="">
-                        </div>
-                        <div class="ci-text">
-                            <span>STRENGTH</span>
-                            <h5>Weightlifting</h5>
-                            <a href="#"><i class="fa fa-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="class-item">
-                        <div class="ci-pic">
-                            <img src="/img/classes/class-2.jpg" alt="">
-                        </div>
-                        <div class="ci-text">
-                            <span>Cardio</span>
-                            <h5>Indoor cycling</h5>
-                            <a href="#"><i class="fa fa-angle-right"></i></a>
+
+                @foreach($categories as $category)
+                    <div class="col-lg-4 col-md-6">
+                        <div class="class-item">
+                            <div class="ci-pic">
+                                <img src="/category_imgs/{{ $category->photo_name }}" alt="">
+                            </div>
+                            <div class="ci-text">
+                                <h5>{{ $category->name }}</h5>
+                                <a href="#"><i class="fa fa-angle-right"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="class-item">
-                        <div class="ci-pic">
-                            <img src="/img/classes/class-3.jpg" alt="">
-                        </div>
-                        <div class="ci-text">
-                            <span>STRENGTH</span>
-                            <h5>Kettlebell power</h5>
-                            <a href="#"><i class="fa fa-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="class-item">
-                        <div class="ci-pic">
-                            <img src="/img/classes/class-4.jpg" alt="">
-                        </div>
-                        <div class="ci-text">
-                            <span>Cardio</span>
-                            <h4>Indoor cycling</h4>
-                            <a href="#"><i class="fa fa-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="class-item">
-                        <div class="ci-pic">
-                            <img src="/img/classes/class-5.jpg" alt="">
-                        </div>
-                        <div class="ci-text">
-                            <span>Training</span>
-                            <h4>Boxing</h4>
-                            <a href="#"><i class="fa fa-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
     </section>
     <!-- ChoseUs Section End -->
-
-    <!-- Banner Section Begin -->
-    <section class="banner-section set-bg" data-setbg="img/banner-bg.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="bs-text">
-                        <h2>registration now to get more deals</h2>
-                        <div class="bt-tips">Where health, beauty and fitness meet.</div>
-                        <a href="#" class="primary-btn  btn-normal">Appointment</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Banner Section End -->
-
-    <!-- Gallery Section Begin -->
-    <div class="gallery-section">
-        <div class="gallery">
-            <div class="grid-sizer"></div>
-            <div class="gs-item set-bg" data-setbg="img/gallery/gallery-2.jpg">
-                <a href="/img/gallery/gallery-2.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-            </div>
-            <div class="gs-item set-bg" data-setbg="img/gallery/gallery-3.jpg">
-                <a href="/img/gallery/gallery-3.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-            </div>
-            <div class="gs-item set-bg" data-setbg="img/gallery/gallery-4.jpg">
-                <a href="/img/gallery/gallery-4.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-            </div>
-            <div class="gs-item set-bg" data-setbg="img/gallery/gallery-5.jpg">
-                <a href="/img/gallery/gallery-5.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-            </div>
-            <div class="gs-item set-bg" data-setbg="img/gallery/gallery-6.jpg">
-                <a href="/img/gallery/gallery-6.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
-            </div>
-        </div>
-    </div>
-    <!-- Gallery Section End -->
 
     <!-- Team Section Begin -->
     <section class="team-section spad">
@@ -209,60 +125,23 @@
                             <span>Our Team</span>
                             <h2>TRAIN WITH EXPERTS</h2>
                         </div>
-                        <a href="#" class="primary-btn btn-normal appoinment-btn">appointment</a>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="ts-slider owl-carousel">
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-1.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>Gym Trainer</span>
+
+                    @foreach($trainers as $trainer)
+                        <div class="col-lg-4">
+                            <div class="ts-item set-bg" data-setbg="/profile_imgs/{{ $trainer->photo_name }}">
+                                <div class="ts_text">
+                                    <h4>{{ $trainer->name }}</h4>
+                                    <span>Gym Trainer</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-2.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>Gym Trainer</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-3.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>Gym Trainer</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-4.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>Gym Trainer</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-5.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>Gym Trainer</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-6.jpg">
-                            <div class="ts_text">
-                                <h4>Athart Rachel</h4>
-                                <span>Gym Trainer</span>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+
                 </div>
             </div>
         </div>

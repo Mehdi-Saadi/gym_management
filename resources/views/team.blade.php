@@ -9,7 +9,7 @@
                     <div class="breadcrumb-text">
                         <h2>Our Team</h2>
                         <div class="bt-option">
-                            <a href="./index.html">Home</a>
+                            <a href="{{ route('index') }}">Home</a>
                             <span>Our team</span>
                         </div>
                     </div>
@@ -29,101 +29,37 @@
                             <span>Our Team</span>
                             <h2>TRAIN WITH EXPERTS</h2>
                         </div>
-                        <a href="#" class="primary-btn btn-normal appoinment-btn">appointment</a>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-sm-6">
-                    <div class="ts-item set-bg" data-setbg="img/team/team-1.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                            <div class="tt_social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa  fa-envelope-o"></i></a>
+
+                @foreach($trainers as $trainer)
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="ts-item set-bg" data-setbg="/profile_imgs/{{ $trainer->photo_name }}">
+                            <div class="ts_text">
+                                <h4>{{ $trainer->name }}</h4>
+                                <span>Gym Trainer</span>
+                                <div class="tt_social">
+                                    @if(isset($trainer->facebook))
+                                        <a href="{{ $trainer->facebook }}"><i class="fa fa-facebook"></i></a>
+                                    @endif
+                                    @if(isset($trainer->twitter))
+                                        <a href="{{ $trainer->twitter }}"><i class="fa fa-twitter"></i></a>
+                                    @endif
+                                    @if(isset($trainer->youtube))
+                                        <a href="{{ $trainer->youtube }}"><i class="fa fa-youtube-play"></i></a>
+                                    @endif
+                                    @if(isset($trainer->instagram))
+                                        <a href="{{ $trainer->instagram }}"><i class="fa fa-instagram"></i></a>
+                                    @endif
+                                    <a href="{{ $trainer->email }}"><i class="fa  fa-envelope-o"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="ts-item set-bg" data-setbg="img/team/team-2.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                            <div class="tt_social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa  fa-envelope-o"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="ts-item set-bg" data-setbg="img/team/team-3.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                            <div class="tt_social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa  fa-envelope-o"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="ts-item set-bg" data-setbg="img/team/team-4.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                            <div class="tt_social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa  fa-envelope-o"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="ts-item set-bg" data-setbg="img/team/team-5.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                            <div class="tt_social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa  fa-envelope-o"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="ts-item set-bg" data-setbg="img/team/team-6.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                            <div class="tt_social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa  fa-envelope-o"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
     </section>

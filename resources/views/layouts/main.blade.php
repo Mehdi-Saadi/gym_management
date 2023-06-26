@@ -39,7 +39,6 @@
     <nav class="canvas-menu mobile-menu">
         <ul>
             <li><a href="{{ route('index') }}">Home</a></li>
-            <li><a href="{{ route('about') }}">About Us</a></li>
             <li><a href="{{ route('classes') }}">Classes</a></li>
             <li><a href="{{ route('trainers') }}">Our Team</a></li>
             <li><a href="#">Pages</a>
@@ -103,7 +102,6 @@
                 <nav class="nav-menu">
                     <ul>
                         <li class="{{ isActive('index') }}"><a href="{{ route('index') }}">Home</a></li>
-                        <li class="{{ isActive('about') }}"><a href="{{ route('about') }}">About Us</a></li>
                         <li class="{{ isActive('classes') }}"><a href="{{ route('classes') }}">Classes</a></li>
                         <li class="{{ isActive('trainers') }}"><a href="{{ route('trainers') }}">Our Team</a></li>
                         <li class="{{ isActive(['timetable', 'bmi', 'gallery', 'blog']) }}"><a href="#">Pages</a>
@@ -217,20 +215,8 @@
                 <div class="fs-widget">
                     <h4>Useful links</h4>
                     <ul>
-                        <li><a href="#">About</a></li>
                         <li><a href="#">Blog</a></li>
                         <li><a href="#">Classes</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-3 col-sm-6">
-                <div class="fs-widget">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="#">Login</a></li>
-                        <li><a href="#">My account</a></li>
-                        <li><a href="#">Subscribe</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>
                 </div>

@@ -15,16 +15,12 @@
             <span>Your Classes</span></a>
     </li>
 
-    <hr class="sidebar-divider">
-
     <!-- Nav Item - messages -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('trainer.classes') }}">
             <i class="fas fa-fw fa-comment"></i>
             <span>Messages</span></a>
     </li>
-
-    <hr class="sidebar-divider">
 
     <!-- Nav Item - settings -->
     <li class="nav-item">

@@ -2,6 +2,18 @@
 
 @section('title', 'Admin-Edit-Category')
 
+@section('profile_style')
+    <style>
+        .profile-pic-div{
+            height: 8rem;
+            width: 8rem;
+        }
+        #uploadBtn{
+            cursor: pointer;
+        }
+    </style>
+@endsection
+
 @section('content')
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -27,31 +39,54 @@
                     <h1 class="h3 mb-2 text-gray-800">Edit Category</h1>
 
                     <!-- form data -->
-                    <div class="d-flex justify-content-center">
-                        <div class="card shadow mb-4" style="max-width: 400px;">
-                            <div class="card-body row mt-3 mb-1-2 mx-3">
-                                <div class="col">
-                                    <form method="post" action="{{ route('admin.updateCategory', $category->id) }}">
-                                        @csrf
-                                        @method('put')
-                                        <div class="form-group row">
-                                            <input type="text" name="name" class="form-control bg-light" placeholder="Edit category" autocomplete="off" value="{{ $category->name }}">
-                                        </div>
-                                        <!-- show error if exists -->
-                                        @error('name')
-                                        @php
-                                            alert('', "$message", 'error');
-                                        @endphp
-                                        @enderror
-                                        <div class="form-group row mt-5">
-                                            <div class="col">
-                                                <a href="{{ route('admin.categories') }}" class="btn btn-secondary btn-sm">Cancel</a>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col" style="max-width: 600px;">
+                            <div class="card o-hidden border-0 shadow-lg my-5">
+                                <div class="card-body p-0">
+                                    <!-- Nested Row within Card Body -->
+                                    <div class="row">
+
+                                        <div class="col">
+                                            <div class="p-5">
+                                                <form class="user" method="POST" action="{{ route('admin.updateCategory', $category->id) }}" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('put')
+                                                    <!-- profile photo -->
+                                                    <div class="form-group d-flex justify-content-center">
+                                                        <div class="overflow-hidden border border-secondary">
+                                                            <input type="file" name="photo" id="file" class="d-none">
+                                                            <label for="file" id="uploadBtn" class="mb-0">
+                                                                <img src="/category_imgs/@if(isset($category->photo_name)){{ $category->photo_name }}@else class-4.jpg @endif" id="photo" class="profile-pic-div">
+                                                            </label>
+                                                            @error('photo')
+                                                            @php
+                                                                alert('', "$message", 'error');
+                                                            @endphp
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control form-control-user @error('name') is-invalid @enderror" id="name" placeholder="Category Name" name="name" value="{{ old('name') }}" required autocomplete="off" autofocus>
+                                                        @error('name')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="row mt-5">
+                                                        <div class="col">
+                                                            <a href="{{ route('admin.categories') }}" class="btn btn-secondary btn-user">Cancel</a>
+                                                        </div>
+                                                        <div class="col">
+                                                            <button type="submit" class="btn btn-primary btn-user btn-block">
+                                                                Save
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
                                             </div>
-                                            <div class="col d-flex justify-content-end">
-                                                <button class="btn btn-primary btn-sm" type="submit">Save</button>
-                                            </div>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -80,4 +115,8 @@
 
     <!-- Logout Modal-->
     @include('layouts.logout-modal-dash')
+@endsection
+
+@section('profile_script')
+    <script src="/profile_select/app.js"></script>
 @endsection

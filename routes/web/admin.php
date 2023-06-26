@@ -29,6 +29,7 @@ Route::prefix('classes')->group(function () {
 // category routes
 Route::prefix('categories')->group(function () {
     Route::get('/', [CategoryController::class, 'categories'])->name('categories');
+    Route::get('/create', [CategoryController::class, 'createCategory'])->name('createCategory');
     Route::post('/add', [CategoryController::class, 'addCategory'])->name('addCategory');
     Route::delete('/{category}/delete', [CategoryController::class, 'deleteCategory'])->name('deleteCategory');
     Route::get('/{category}/edit', [CategoryController::class, 'editCategory'])->name('editCategory');

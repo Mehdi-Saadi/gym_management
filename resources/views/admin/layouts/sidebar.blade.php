@@ -40,11 +40,20 @@
         </div>
     </li>
 
-    <!-- Nav Item - categories -->
+    <!-- Nav Item - Categories Menu -->
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.categories') }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+           aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-table"></i>
-            <span>Categories</span></a>
+            <span>Categories</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('admin.categories') }}">All Categories</a>
+                <a class="collapse-item" href="{{ route('admin.createCategory') }}">Create New Category</a>
+            </div>
+        </div>
     </li>
 
 {{--    <li class="nav-item">--}}
@@ -56,21 +65,6 @@
 {{--        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">--}}
 {{--            <div class="bg-white py-2 collapse-inner rounded">--}}
 {{--                <a class="collapse-item" href="{{ route('admin.users') }}">All</a>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </li>--}}
-
-    <!-- Nav Item - Setting Menu -->
-{{--    <li class="nav-item">--}}
-{{--        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"--}}
-{{--           aria-expanded="true" aria-controls="collapseUtilities">--}}
-{{--            <i class="fas fa-fw fa-wrench"></i>--}}
-{{--            <span>Settings</span>--}}
-{{--        </a>--}}
-{{--        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"--}}
-{{--             data-parent="#accordionSidebar">--}}
-{{--            <div class="bg-white py-2 collapse-inner rounded">--}}
-{{--                <a class="collapse-item" href="utilities-color.html">Contact Info</a>--}}
 {{--            </div>--}}
 {{--        </div>--}}
 {{--    </li>--}}

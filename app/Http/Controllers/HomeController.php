@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Category;
+use App\Models\User;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('index');
+        $trainers = User::where('is_trainer', 1)->get();
+        $categories = Category::all();
+        return view('index', compact(['trainers', 'categories']));
     }
     public function about()
     {
-        return view('about-us');
+        $trainers = User::where('is_trainer', 1)->get();
+        return view('about-us', compact(['trainers']));
     }
     public function classes()
     {
@@ -21,7 +24,8 @@ class HomeController extends Controller
     }
     public function trainers()
     {
-        return view('team');
+        $trainers = User::where('is_trainer', 1)->get();
+        return view('team', compact('trainers'));
     }
     public function contact()
     {

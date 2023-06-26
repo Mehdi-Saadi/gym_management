@@ -34,23 +34,6 @@
                             @include('layouts.searchbar-dash')
                             <!-- end Search bar -->
 
-                            <div class="col-md d-flex justify-content-end">
-                                <form class="d-sm-inline-block form-inline ml-auto mr-md-3 my-2 my-md-0 mw-100" method="post" action="{{ route('admin.addCategory') }}">
-                                    @csrf
-                                    <div class="input-group">
-                                        <input type="text" name="name" class="form-control bg-light small" placeholder="New category" autocomplete="off">
-                                        <!-- show error if exists -->
-                                        @error('name')
-                                        @php
-                                            alert('', "$message", 'error');
-                                        @endphp
-                                        @enderror
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="submit">Save</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

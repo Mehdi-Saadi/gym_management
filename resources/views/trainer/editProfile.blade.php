@@ -49,7 +49,7 @@
                                         <div class="col">
                                             <div class="p-5">
                                                 <div class="text-center">
-                                                    <h1 class="h4 text-gray-900 mb-4">User Data</h1>
+                                                    <h1 class="h4 text-gray-900 mb-4">Your Data</h1>
                                                 </div>
                                                 <form class="user" method="POST" action="{{ route('trainer.updateProfile', $user->id) }}" enctype="multipart/form-data">
                                                     @csrf
